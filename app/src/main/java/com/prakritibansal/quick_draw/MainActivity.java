@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private final String TAG = this.getClass().getSimpleName();
 
     private static int PIXEL_WIDTH = 28;
-    private SketchDetector mnistClassifier;
+    private SketchDetector sketchClassifier;
 
 
     @BindView(R.id.button_detect)
@@ -33,12 +33,6 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.paintView)
     PaintView paintView;
 
-    @BindView(R.id.preview_image)
-    ImageView previewImage;
-
-    @BindView(R.id.inference_preview)
-    LinearLayout inferencePreview;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         setTitle(R.string.app_name);
         ButterKnife.bind(this);
 
-        mnistClassifier = new SketchDetector(this);
+        sketchClassifier = new SketchDetector(this);
 
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
@@ -68,13 +62,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void onDetectClicked() {
-        inferencePreview.setVisibility(View.VISIBLE);
         Bitmap scaledBitmap = Bitmap.createScaledBitmap(paintView.getBitmap(), PIXEL_WIDTH, PIXEL_WIDTH, false);
-        previewImage.setImageBitmap(scaledBitmap);
-        String digit = mnistClassifier.classify(scaledBitmap);
+        String guess = sketchClassifier.classify(scaledBitmap);
 
-        Log.d(TAG, "Found Image = " + digit);
-        mResultText.setText(getString(R.string.found_digits, String.valueOf(digit)));
+        Log.d(TAG, "Found Image = " + guess);
+        mResultText.setText(getString(R.string.sketch_prediction, String.valueOf(guess)));
 
     }
 

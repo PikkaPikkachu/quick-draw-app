@@ -5,10 +5,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingBottom="@dimen/margin_md"
-    android:paddingLeft="@dimen/margin_md"
-    android:paddingRight="@dimen/margin_md"
+
     android:paddingTop="@dimen/margin_md"
-    android:background="@color/dark_black_bg"
+    android:background="@color/colorAccent"
     tools:context="com.prakritibansal.quick_draw.MainActivity">
 
     <com.prakritibansal.quick_draw.PaintView
@@ -19,7 +18,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/margin_md"
+        android:paddingRight="@dimen/margin_md">
 
         <TextView
             android:id="@+id/text_result"
@@ -45,7 +46,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:textColor="@color/textColorPrimary"
-                android:background="@color/buttonBlue"
+                android:background="@color/colorPrimary"
                 android:layout_margin="4dp"
                 android:text="@string/detect" />
 
@@ -54,36 +55,13 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:background="@color/buttonBlue"
+                android:background="@color/colorPrimary"
                 android:layout_margin="4dp"
                 android:textColor="@color/textColorPrimary"
                 android:text="@string/clear" />
         </LinearLayout>
 
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/inference_preview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/scaled_preview_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/margin_sm"
-            android:textColor="@color/textColorPrimary"
-            android:text="@string/preview_scaled"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <ImageView
-            android:id="@+id/preview_image"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="20dp" />
     </LinearLayout>
 
 </LinearLayout>

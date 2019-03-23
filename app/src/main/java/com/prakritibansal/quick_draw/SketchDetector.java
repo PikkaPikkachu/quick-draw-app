@@ -42,7 +42,7 @@ public class SketchDetector {
 
     private static final String LABEL_PATH = "class_names.txt";
 
-    private static final int RESULTS_TO_SHOW = 3;
+    private static final int RESULTS_TO_SHOW = 1;
 
     // Specify the output size
     private static final int NUMBER_LENGTH = 100;
@@ -132,7 +132,8 @@ public class SketchDetector {
         final int size = sortedLabels.size();
         for (int i = 0; i < size; ++i) {
             Map.Entry<String, Float> label = sortedLabels.poll();
-            textToShow = String.format("\n%s: %4.2f",label.getKey(),label.getValue()) + textToShow;
+            textToShow = label.getKey();
+            //textToShow = String.format("\n%s: %4.2f",label.getKey(),label.getValue()) + textToShow;
         }
         return textToShow;
     }
@@ -159,7 +160,7 @@ public class SketchDetector {
         FileChannel fileChannel = inputStream.getChannel();
         long startOffset = fileDescriptor.getStartOffset();
         long declaredLength = fileDescriptor.getDeclaredLength();
-        Log.d(TAG, "******* Load MODEL for *********" + fileDescriptor);
+//        Log.d(TAG, "******* Load MODEL for *********" + fileDescriptor);
         return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength);
     }
 
